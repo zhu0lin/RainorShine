@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>RainorShine</title>
+</head>
+
+<body>
+
+    <div class="heading">
+        <h1>RainorShine</h1>
+        <h2>Your go-to source for up-to-date weather information</h2>
+    </div>
+
+    <div class="input-container">
+        <form id="locationForm" method="POST" action="/submit">
+            <input type="text" id="locationInput" name="location" placeholder="Search City or Zip Code" required>
+            <button type="submit">Get weather</button>
+        </form>
+    </div>
+
+    <div class="result-container">
+        <% if (!weatherDataObj || weatherDataObj === "No data yet") { %>
+           <%console.log("No location entered yet") %>
+        <% } else { %>
+            <h2>Temperature: <%= weatherDataObj.appTemp %>°F</h2>
+            <h3>Condition: <%= weatherDataObj.description %></h3>
+            <img src="<%= weatherDataObj.icon %>" alt="weather icon">
+
+            
+            <button id="show-more-btn" onclick="toggleMoreInfo()">Show More Info</button>
+
+            
+            <div id="more-info" style="display: none;">
+                <h3>Wind Speed: <%= weatherDataObj.windSpd %> km/h</h3>
+                <h3>Humidity: <%= weatherDataObj.rh %> %</h3>
+                <h3>Pressure: <%= weatherDataObj.pres %> hPa</h3>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- Night-time stars or Day-time sun -->
+    <div class="stars"></div> <!-- Stars animation for night -->
+    <% if (new Date().getHours() >= 6 && new Date().getHours() < 18) { %>
+        <div class="sun"></div> <!-- Sun animation for day -->
+    <% } %>
+
+    <script>
+        
+        // JS function to toggle more info visibility
+        function toggleMoreInfo() {
+            const moreInfoDiv = document.getElementById("more-info");
+            if (moreInfoDiv.style.display === "none") {
+                moreInfoDiv.style.display = "block";
+            } else {
+                moreInfoDiv.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and general styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #87CEFA; /* Default sky blue for day */
+    color: #333;
+    transition: background-color 0.5s ease;
+    overflow: hidden; /* Prevents scrollbars due to animation */
+    position: relative; /* Needed to layer stars and sun correctly */
+}
+
+/* Heading Styles */
+.heading {
+    padding: 20px;
+    text-align: left;
+    z-index: 1; /* Ensure heading stays above stars/sun */
+}
+
+.heading h1 {
+    font-size: 3rem;
+    color: #2c3e50; /* Set to a darker color for better contrast */
+    font-weight: bold;
+}
+
+.heading h2 {
+    font-size: 1.5rem;
+    color: #7f8c8d;
+    margin-top: 10px;
+}
+
+/* Input container for location search */
+.input-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#locationInput {
+    padding: 10px;
+    width: 250px;
+    border: 2px solid #7f8c8d;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3498db;
+}
+
+/* Result container for showing weather data */
+.result-container {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    z-index: 1; /* Make sure result is on top */
+}
+
+.result-container h2, .result-container h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.result-container img {
+    margin-top: 20px;
+    max-width: 100px;
+    height: auto;
+}
+
+/* Show more info button */
+#show-more-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+#show-more-btn:hover {
+    background-color: #e67e22;
+}
+
+/* Day and Night Background Animations */
+
+/* Stars for night */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent url('https://cdn.pixabay.com/photo/2017/08/30/06/55/space-2695562_960_720.jpg') repeat center center;
+    z-index: -1; /* Send stars behind content */
+    animation: starsAnimation 20s linear infinite;
+}
+
+/* Sun Animation for Day */
+.sun {
+    position: absolute;
+    top: 50px;
+    left: -100px;
+    width: 150px;
+    height: 150px;
+    background-color: #FDB813; /* Sun color */
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+    animation: sunMovement 20s linear infinite;
+    z-index: -1; /* Send sun behind content */
+}
+
+/* Animation for stars (night time) */
+@keyframes starsAnimation {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Animation for sun (daytime) */
+@keyframes sunMovement {
+    0% {
+        left: -150px;
+    }
+    50% {
+        left: calc(100% - 150px); /* Move sun to the far right */
+    }
+    100% {
+        left: -150px; /* Reset sun back to the left */
+    }
+}
+
