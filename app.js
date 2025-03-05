@@ -9,17 +9,15 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-const date = new Date();
-const currYear = date.getFullYear();
 
 app.get("/", async (req, res) => {
-    res.render("index.ejs", { weatherDataObj: "No data yet", year: currYear });
+    const getCurrentYear = () => new Date().getFullYear();
+    res.render("index.ejs", { weatherDataObj: "No data yet", year: getCurrentYear() });
 });
 
 app.post("/submit", async (req, res) => {
-
+    const getCurrentYear = () => new Date().getFullYear();
         const requestedLocation = req.body.location;
-        console.log(requestedLocation)
 
         try {
             const response = await axios.get(`https://api.weatherbit.io/v2.0/current?city=${requestedLocation}&postal_code=${requestedLocation}&units=I&key=${process.env.API_KEY}`);
@@ -33,11 +31,11 @@ app.post("/submit", async (req, res) => {
                 rh: weatherData.rh,
                 pres: weatherData.pres
             };
-            res.render("index.ejs", { weatherDataObj , year: currYear });
+            res.render("index.ejs", { weatherDataObj , year: getCurrentYear() });
         }
         catch (error) {
             const errorMessage = error.response ? error.response.data : "An error occurred while fetching the weather for the entered location.";
-            res.render("index.ejs", { weatherDataObj: errorMessage });
+            res.render("index.ejs", { weatherDataObj: errorMessage, year: getCurrentYear() });
         }
 });
 
