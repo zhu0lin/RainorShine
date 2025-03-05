@@ -42,11 +42,9 @@
         <% } %>
     </div>
 
-    <!-- Night-time stars or Day-time sun -->
-    <div class="stars"></div> <!-- Stars animation for night -->
-    <% if (new Date().getHours() >= 6 && new Date().getHours() < 18) { %>
-        <div class="sun"></div> <!-- Sun animation for day -->
-    <% } %>
+    <div id="copyright">
+        <p>© Zhuolin Li <%=year%></p>
+    </div>
 
     <script>
         
