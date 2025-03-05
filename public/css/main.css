@@ -66,6 +66,8 @@ button:hover {
 
 /* Result container for showing weather data */
 .result-container {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     margin-top: 40px;
     padding: 20px;
@@ -87,6 +89,9 @@ button:hover {
 .result-container img {
     margin-top: 20px;
     max-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
     height: auto;
 }
 
@@ -106,54 +111,16 @@ button:hover {
     background-color: #e67e22;
 }
 
-/* Day and Night Background Animations */
-
-/* Stars for night */
-.stars {
-    position: absolute;
-    top: 0;
+#copyright {
+    position: fixed;
     left: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    background: transparent url('https://cdn.pixabay.com/photo/2017/08/30/06/55/space-2695562_960_720.jpg') repeat center center;
-    z-index: -1; /* Send stars behind content */
-    animation: starsAnimation 20s linear infinite;
-}
-
-/* Sun Animation for Day */
-.sun {
-    position: absolute;
-    top: 50px;
-    left: -100px;
-    width: 150px;
-    height: 150px;
-    background-color: #FDB813; /* Sun color */
-    border-radius: 50%;
-    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
-    animation: sunMovement 20s linear infinite;
-    z-index: -1; /* Send sun behind content */
-}
-
-/* Animation for stars (night time) */
-@keyframes starsAnimation {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(100%);
-    }
-}
-
-/* Animation for sun (daytime) */
-@keyframes sunMovement {
-    0% {
-        left: -150px;
-    }
-    50% {
-        left: calc(100% - 150px); /* Move sun to the far right */
-    }
-    100% {
-        left: -150px; /* Reset sun back to the left */
-    }
+    color: white;
+    text-align: center;
+    z-index: 1;
+    height: 3%;
+    background-color: #2b405e;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
 }
 
